@@ -55,15 +55,12 @@ function! GetLinesHelper(tree, lines, offset, vlines, fill)
 
     if len(items) > 0
       let last = 0
-    else
-      let last = 1
-    endif
-
-    " pipe
-    if len(items) > 0
       let pipe = "├─ "
+
     else
       let pipe = "└─ "
+      let last = 1
+
     endif
 
     if type(value) is v:t_dict

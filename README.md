@@ -64,7 +64,7 @@ Plug 'el-iot/buffer-tree.vim'
 ```
 
 <h2>Usage</h2>
-All you need is the ``:BufferTree`` command.
+All you need is the ``BufferTree`` command.
 
 <h2>Configuration</h2>
 None yet, but I will add some soon!

@@ -74,3 +74,4 @@ Please do! If you find the plugin useful then any contributions are welcome. Thi
 
  - adding colours to the files at the end to highlight them.
  - add option to modify arrows
+ - add line number and column number for each buffer

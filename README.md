@@ -21,7 +21,8 @@ A vim-plugin for rendering your buffer-list as an ascii-tree, written entirely i
 
 
 <h2>Why?</h2>
-I am a fan of both <a href='https://github.com/jceb/vmux'>vmux</a> and <a href='https://github.com/tpope/vim-obsession'>vim-obsession</a>, so I often have a *lot* of vim-buffers open at once. Sometimes it can be hard to parse where all of my buffers are using the `:buffers` command because the buffers are often listed in an inconvenient order, and the paths are quite long. As an example:
+I am a fan of both <a href='https://github.com/jceb/vmux'>vmux</a> and <a href='https://github.com/tpope/vim-obsession'>vim-obsession</a>, so I often have a *lot* of vim-buffers open at once. Sometimes it can be hard to parse where all of my buffers are using the ``:buffers`` command because the buffers are often listed in an inconvenient order, and the paths are quite long. As an example:
+
 ```
 :buffers
   1  h   "~/.config/nvim/init.vim"      line 234
@@ -32,7 +33,7 @@ I am a fan of both <a href='https://github.com/jceb/vmux'>vmux</a> and <a href='
  28 %a   "README.md"                    line 35
 ```
 
-`BufferTree` lets you view your vim-buffers in an ascii-tree format instead.
+``BufferTree`` lets you view your vim-buffers in an ascii-tree format instead.
 
 ```
 :BufferTree
@@ -63,7 +64,7 @@ Plug 'el-iot/buffer-tree.vim'
 ```
 
 <h2>Usage</h2>
-All you need is the `:BufferTree` file command.
+All you need is the ``:BufferTree`` command.
 
 <h2>Configuration</h2>
 None yet, but I will add some soon!

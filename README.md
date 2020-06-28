@@ -67,12 +67,56 @@ Plug 'el-iot/buffer-tree.vim'
 All you need is the ``BufferTree`` command.
 
 <h2>Configuration</h2>
-None yet, but I will add some soon!
+
+<h3> Compressing the BufferTree </h3>
+Sometimes your buffers will be very sparse and the ``BufferTree`` will look a little large for so few files.
+As an example,
+
+```
+└─ home
+   └─ el
+      ├─ personal
+      │  ├─ vim
+      │  │  └─ buffer-tree
+      │  │     ├─ README.md ⇒ 2
+      │  │     └─ plugin
+      │  │        └─ buffer-tree.vim ⇒ 3
+      │  └─ repos
+      │     └─ themerator
+      │        └─ themerator.py ⇒ 14
+      └─ .config
+         └─ nvim
+            ├─ plugged
+            │  ├─ buffer-tree
+            │  │  └─ plugin
+            │  │     └─ buffer-tree.vim ⇒ 4
+            │  └─ buffer-minimalism
+            │     └─ plugin
+            │        └─ buffer-minimalism.vim ⇒ 10
+            └─ init.vim ⇒ 1
+```
+
+This is a little inconvenient, as a lot of vertical space is taken up by directories with no buffers.
+You can set ``g:buffertree_compress`` to 1 to "compress" your trees where possible. In this case, the tree above would look like
+
+```
+└─ home/el
+   ├─ .config/nvim
+   │  ├─ plugged
+   │  │  ├─ buffer-minimalism/plugin/buffer-minimalism.vim ⇒ 10
+   │  │  └─ buffer-tree/plugin/buffer-tree.vim ⇒ 4
+   │  └─ init.vim ⇒ 1
+   └─ personal
+      ├─ repos/themerator/themerator.py ⇒ 14
+      └─ vim/buffer-tree
+         ├─ README.md ⇒ 2
+         └─ plugin/buffer-tree.vim ⇒ 3
+
+```
+
+<h3>Highlight groups</h3>
+The plugin uses a highlight group ``BufferTreeFile`` to highlight files to make it easier to parse the relevant parts of the tree.
 
 <h2>Contributing</h2>
 Please do! If you find the plugin useful then any contributions are welcome. Things that need doing:<br>
-
- - adding colours to the files at the end to highlight them.
- - add option to modify arrows
  - add line number and column number for each buffer
- - compress common filepaths to one branch

@@ -1,3 +1,7 @@
+let s:arrow = " ⇒ "
+let s:hidden_sep = "|||"
+echohl None
+
 function! GetTree(buffer_numbers)
 
   let tree = {}
@@ -45,7 +49,6 @@ endfunction
 function! GetLinesHelper(tree, lines, offset, vlines, fill)
 
   let items = items(a:tree)
-  let arrow = " ⇒ "
 
   while len(items) > 0
 
@@ -75,9 +78,9 @@ function! GetLinesHelper(tree, lines, offset, vlines, fill)
     else
 
       if a:fill
-        call add(a:lines, FillWhitespace(a:offset, a:vlines) . pipe . key . arrow . value)
+        call add(a:lines, FillWhitespace(a:offset, a:vlines) . pipe . s:hidden_sep . key . s:arrow . value)
       else
-        call add(a:lines, FillWhitespace(a:offset, a:vlines[:-1]) . pipe . key . arrow . value)
+        call add(a:lines, FillWhitespace(a:offset, a:vlines[:-1]) . pipe . s:hidden_sep . key . s:arrow . value)
       endif
 
     endif
@@ -92,13 +95,62 @@ function! GetLines(tree)
   return lines
 endfunction
 
+function! CompressTree(tree)
+
+    let sep = "/"
+
+    if type(a:tree) is v:t_dict
+      for [k1, v1] in items(a:tree)
+
+        let a:tree[k1] = CompressTree(v1)
+
+        if type(v1) is v:t_dict && len(items(v1)) == 1
+
+          let [k2, v2] = items(v1)[0]
+          let a:tree[k1 . sep . k2] = v2
+          call remove(a:tree, k1)
+
+        endif
+
+      endfor
+    endif
+    return a:tree
+
+endfunction
+
 function! BufferTree()
 
-  let tree = {}
+  if exists('g:buffertree_compress')
+    let compress = g:buffertree_compress
+  else
+    let compress = 1
+  endif
+
   let buffer_numbers = map(filter(copy(getbufinfo()), 'v:val.listed'), 'v:val.bufnr')
   let tree = GetTree(buffer_numbers)
+
+  if compress
+    let tree = CompressTree(tree)
+  endif
+
   let lines = GetLines(tree)
-  echo join(lines, "\n")
+
+  for line in lines
+
+    if stridx(line, s:hidden_sep) != -1
+      " arrow is in the line
+      let sections = split(line, s:hidden_sep)
+      echo sections[0]
+      echohl BufferTreeFile
+      echon sections[1]
+      echohl None
+
+    else
+      echo line
+
+    endif
+
+  endfor
 
 endfunction
 

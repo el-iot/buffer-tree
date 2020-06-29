@@ -16,12 +16,17 @@
                         I8, ,8'I8, ,8'
                          "Y8P'  "Y8P'
 ```
-<h1>buffer-tree</h1>
-A vim-plugin for rendering your buffer-list as an ascii-tree, written entirely in Vimscript.
 
+<h1>buffer-tree</h1>
+
+<img src="./assets/compressed.png" width="60%" height="40%" align="right">
+A vim-plugin for rendering your buffer-list as an ascii-tree, written entirely in Vimscript. <br/><br/>
+
+
+<p>The image on the right shows how the buffer-tree behaves when <code>g:buffertree_compress=1</code> and the <code>BufferTreeFile</code> highlight group is set to <code>yellow</code>.<p><br/>
 
 <h2>Why?</h2>
-I am a fan of both <a href='https://github.com/jceb/vmux'>vmux</a> and <a href='https://github.com/tpope/vim-obsession'>vim-obsession</a>, so I often have a *lot* of vim-buffers open at once. Sometimes it can be hard to parse where all of my buffers are using the ``:buffers`` command because the buffers are often listed in an inconvenient order, and the paths are quite long. As an example:
+I am a fan of both <a href='https://github.com/jceb/vmux'>vmux</a> and <a href='https://github.com/tpope/vim-obsession'>vim-obsession</a>, so I often have a <b>lot</b> of vim-buffers open at once. Sometimes it can be hard to parse where all of my buffers are using the <code>:buffers</code> command because the buffers are often listed in an inconvenient order, and the paths are quite long. As an example:
 
 ```
 :buffers
@@ -33,7 +38,7 @@ I am a fan of both <a href='https://github.com/jceb/vmux'>vmux</a> and <a href='
  28 %a   "README.md"                    line 35
 ```
 
-``BufferTree`` lets you view your vim-buffers in an ascii-tree format instead.
+<code>BufferTree</code> lets you view your vim-buffers in an ascii-tree format instead.
 
 ```
 :BufferTree
@@ -58,18 +63,19 @@ Note that the numbers after the arrow next to each file represent the buffer num
 
 <h2>Installation</h2>
 
-Add this line to your `init.vim` / `.vimrc` file (though you may need to modify it slightly if you use a different plugin manager.
+Add this line to your <code>init.vim</code> / <code>.vimrc</code> file:
 ```
 Plug 'el-iot/buffer-tree.vim'
 ```
+then <code>source</code> the file and run <code>PlugInstall</code> (though you may need to modify it slightly if you use a different plugin manager).
 
 <h2>Usage</h2>
-All you need is the ``BufferTree`` command.
+All you need is the <code>BufferTree</code> command.
 
 <h2>Configuration</h2>
 
 <h3> Compressing the BufferTree </h3>
-Sometimes your buffers will be very sparse and the ``BufferTree`` will look a little large for so few files.
+Sometimes your buffers will be very sparse and the buffer-tree will look a little large for so few files.
 As an example,
 
 ```
@@ -97,7 +103,7 @@ As an example,
 ```
 
 This is a little inconvenient, as a lot of vertical space is taken up by directories with no buffers.
-You can set ``g:buffertree_compress`` to 1 to "compress" your trees where possible. In this case, the tree above would look like
+You can set <code>g:buffertree_compress</code> to 1 to "compress" your trees where possible. In this case, the tree above would look like
 
 ```
 └─ home/el
@@ -115,7 +121,7 @@ You can set ``g:buffertree_compress`` to 1 to "compress" your trees where possib
 ```
 
 <h3>Highlight groups</h3>
-The plugin uses a highlight group ``BufferTreeFile`` to highlight files to make it easier to parse the relevant parts of the tree.
+The plugin uses a highlight group <code>BufferTreeFile</code> to highlight files to make it easier to parse the relevant parts of the tree.
 
 <h2>Contributing</h2>
 Please do! If you find the plugin useful then any contributions are welcome. Things that need doing:<br>

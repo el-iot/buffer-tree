@@ -123,7 +123,7 @@ function! BufferTree()
   if exists('g:buffertree_compress')
     let compress = g:buffertree_compress
   else
-    let compress = 1
+    let compress = 0
   endif
 
   let buffer_numbers = map(filter(copy(getbufinfo()), 'v:val.listed'), 'v:val.bufnr')

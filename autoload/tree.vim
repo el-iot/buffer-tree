@@ -1,7 +1,4 @@
-let s:arrow = get(g:, "buffertree_arrow", " ⇒ ")
-let s:path_sep = get(g:, "buffertree_path_sep", "/")
 let s:hidden_sep = "|||"
-let s:compress = get(g:, "buffertree_compress", 0)
 
 echohl None
 
@@ -11,7 +8,7 @@ function! GetTree(buffer_numbers)
 
   for buffer_number in a:buffer_numbers
 
-    let file_path = split(expand("#" . string(buffer_number) . ":p"), s:path_sep)
+    let file_path = split(expand("#" . string(buffer_number) . ":p"), g:buffertree_path_sep)
     let dir = tree
     for step in file_path
 
@@ -81,9 +78,9 @@ function! GetLinesHelper(tree, lines, offset, vlines, fill)
     else
 
       if a:fill
-        call add(a:lines, FillWhitespace(a:offset, a:vlines) . pipe . s:hidden_sep . key . s:arrow . value)
+        call add(a:lines, FillWhitespace(a:offset, a:vlines) . pipe . s:hidden_sep . key . g:buffertree_arrow . value)
       else
-        call add(a:lines, FillWhitespace(a:offset, a:vlines[:-1]) . pipe . s:hidden_sep . key . s:arrow . value)
+        call add(a:lines, FillWhitespace(a:offset, a:vlines[:-1]) . pipe . s:hidden_sep . key . g:buffertree_arrow . value)
       endif
 
     endif
@@ -126,7 +123,7 @@ function! tree#BufferTree()
   let buffer_numbers = map(filter(copy(getbufinfo()), 'v:val.listed'), 'v:val.bufnr')
   let tree = GetTree(buffer_numbers)
 
-  if s:compress == 1
+  if g:buffertree_compress == 1
     let tree = CompressTree(tree)
   endif
 

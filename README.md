@@ -123,6 +123,23 @@ You can set <code>g:buffertree_compress</code> to 1 to "compress" your trees whe
 <h3>Highlight groups</h3>
 The plugin uses a highlight group <code>BufferTreeFile</code> to highlight files to make it easier to parse the relevant parts of the tree.
 
+<h3>Modifying the "arrow"</h3>
+The "⇒" character is used by default for separating the file path and buffer number, but this can be customised using the `g:buffertree_arrow` global variable.
+
+<h3>Modifying the default file-path separator</h3>
+On Windows systems the backwards slash character (<code>\</code>) is used by as the file-path separator and initially buffer-tree will not render the ascii tree correctly and the tree will be "flat", i.e.
+
+```
+BufferTree
+├─ C:\the\path\to\file\one
+├─ C:\the\path\to\file\two
+├─ C:\the\different\path\to\file\three
+├─ C:\the\different\path\to\file\four
+└─ D:\the\path\to\file\five
+```
+
+This is because the plugin separates each sub-directory in a path according to the `g:buffertree_path_sep` global variable (set to `/` by default). If you are using a Windows system or notice that buffer-tree is not nesting properly then change the value of `g:buffertree_path_sep`.
+
 <h2>Contributing</h2>
 Please do! If you find the plugin useful then any contributions are welcome. Things that need doing:<br>
  - add line number and column number for each buffer

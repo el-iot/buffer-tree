@@ -1,5 +1,8 @@
-let s:arrow = " ⇒ "
+let s:arrow = get(g:, "buffertree_arrow", " ⇒ ")
+let s:path_sep = get(g:, "buffertree_path_sep", "/")
 let s:hidden_sep = "|||"
+let s:compress = get(g:, "buffertree_compress", 0)
+
 echohl None
 
 function! GetTree(buffer_numbers)
@@ -8,7 +11,7 @@ function! GetTree(buffer_numbers)
 
   for buffer_number in a:buffer_numbers
 
-    let file_path = split(expand("#" . string(buffer_number) . ":p"), "/")
+    let file_path = split(expand("#" . string(buffer_number) . ":p"), s:path_sep)
     let dir = tree
     for step in file_path
 
@@ -120,16 +123,10 @@ endfunction
 
 function! BufferTree()
 
-  if exists('g:buffertree_compress')
-    let compress = g:buffertree_compress
-  else
-    let compress = 0
-  endif
-
   let buffer_numbers = map(filter(copy(getbufinfo()), 'v:val.listed'), 'v:val.bufnr')
   let tree = GetTree(buffer_numbers)
 
-  if compress
+  if s:compress == 1
     let tree = CompressTree(tree)
   endif
 
@@ -138,7 +135,6 @@ function! BufferTree()
   for line in lines
 
     if stridx(line, s:hidden_sep) != -1
-      " arrow is in the line
       let sections = split(line, s:hidden_sep)
       echo sections[0]
       echohl BufferTreeFile

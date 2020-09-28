@@ -11,3 +11,4 @@ if !exists('g:buffertree_arrow')
 endif
 
 command! BufferTree :call tree#BufferTree()
+command! BufferTreeSwitch :call tree#BufferTreeSwitch()

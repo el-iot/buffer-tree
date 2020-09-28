@@ -146,3 +146,10 @@ function! tree#BufferTree()
   endfor
 
 endfunction
+
+                                                                                
+function! tree#BufferTreeSwitch()                                               
+  call tree#BufferTree()                                                       
+  let switchToBuffer = input('Enter buffer number: ')                          
+  execute('b' . switchToBuffer)                                                
+endfunction

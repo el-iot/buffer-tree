@@ -16,6 +16,8 @@
                         I8, ,8'I8, ,8'
                          "Y8P'  "Y8P'
 ```
+<h3>A small heads-up</h3>
+Since developing this plugin, I've also developed <a href=https://github.com/el-iot/buffer-tree-explorer>buffer-tree-explorer</a>. I personally prefer <code>buffer-tree-explorer</code>, as it's just more usable (by its nature). Check it out if you're interested!
 
 <h1>buffer-tree</h1>
 
